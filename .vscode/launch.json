@@ -1,23 +1,30 @@
 {
   "version": "0.2.0",
   "configurations": [
+
     {
-      // client side debug
-      "type": "chrome",
+      "name": "Next.js: debug server-side",
+      "type": "node-terminal",
       "request": "launch",
-      "name": "Next.js Client",
-      "url": "http://localhost:3000",
-      "webRoot": "${workspaceFolder}"
+      "command": "npm run dev"
     },
     {
-      // server side debug
-      "type": "node",
-      "request": "attach",
-      "name": "Nextjs: Server",
-      "skipFiles": [
-        "<node_internals>/**"
-      ],
-      "port": 9229
+      "name": "Next.js: debug client-side",
+      "type": "pwa-chrome",
+      "request": "launch",
+      "url": "http://localhost:3000"
+    },
+    {
+      "name": "Next.js: debug full stack",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "npm run dev",
+      "console": "integratedTerminal",
+      "serverReadyAction": {
+        "pattern": "started server on .+, url: (https?://.+)",
+        "uriFormat": "%s",
+        "action": "debugWithChrome"
+      }
     }
-  ],
+  ]
 }

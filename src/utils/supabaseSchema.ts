@@ -38,18 +38,21 @@ export interface Database {
         Row: {
           answer_word: string;
           created_at: string;
+          description: string | null;
           id: number;
           updated_at: string;
         };
         Insert: {
           answer_word?: string;
           created_at?: string;
+          description?: string | null;
           id?: number;
           updated_at?: string;
         };
         Update: {
           answer_word?: string;
           created_at?: string;
+          description?: string | null;
           id?: number;
           updated_at?: string;
         };
@@ -57,7 +60,27 @@ export interface Database {
       };
     };
     Views: {
-      [_ in never]: never;
+      random_answers: {
+        Row: {
+          answer_word: string | null;
+          created_at: string | null;
+          id: number | null;
+          updated_at: string | null;
+        };
+        Insert: {
+          answer_word?: string | null;
+          created_at?: string | null;
+          id?: number | null;
+          updated_at?: string | null;
+        };
+        Update: {
+          answer_word?: string | null;
+          created_at?: string | null;
+          id?: number | null;
+          updated_at?: string | null;
+        };
+        Relationships: [];
+      };
     };
     Functions: {
       [_ in never]: never;
@@ -342,6 +365,10 @@ export type ReturnTypeGraphql =
 export type Answers = Database["public"]["Tables"]["answers"]["Row"];
 export type InsertAnswers = Database["public"]["Tables"]["answers"]["Insert"];
 export type UpdateAnswers = Database["public"]["Tables"]["answers"]["Update"];
+
+// Views
+export type RandomAnswers =
+  Database["public"]["Views"]["random_answers"]["Row"];
 
 // Schema: storage
 // Tables
