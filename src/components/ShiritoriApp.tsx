@@ -105,25 +105,23 @@ export const ShiritoriApp = () => {
   };
 
   return (
-    <div className="bg-white py-6 sm:py-8 lg:py-12">
+    <div className="bg-white py-5 sm:py-5 lg:py-5">
       <div className="mx-auto max-w-screen-2xl px-4 md:px-8">
         {/* text - start */}
-        <div className="mb-10 md:mb-16">
+        <div className="mb-10 md:mb-5">
           <h2 className="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">
             しりとりゲーム
           </h2>
 
           <p className="mx-auto max-w-screen-md text-center text-gray-500 md:text-lg">
-            回答をひらがなで入力して
-            <br />
-            [回答する] ボタンを押してください。
+            回答をひらがなで入力して[回答する] ボタンを押してください。
           </p>
         </div>
         {/* text - end */}
 
         {/* form - start */}
         <form
-          className="mx-auto grid max-w-screen-md gap-4"
+          className="mx-auto grid max-w-screen-md gap-4 "
           onSubmit={(e) => {
             e.preventDefault();
             handleOnSubmit();
