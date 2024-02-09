@@ -7,9 +7,19 @@ export const getAllAnswers = async () : Promise<Answers[] | null> => {
   return data;
 };
 
-export const getNextAnswer = async (lastAnswer: string) : Promise<string>  => {
-  const lastWord = getLastWord(lastAnswer);
-  const { data, error } = await supabase.from('random_answers').select('*').like('answer_word', lastWord + '%').limit(1);
+/**
+ * 次の回答を取得
+ * @param currentAnswer 今回の回答
+ * @returns 次の回答
+ */
+export const getNextAnswer = async (currentAnswer: string, alreadyAnswer: string[]) : Promise<string>  => {
+  const lastWord = getLastWord(currentAnswer);
+  const { data, error } = await supabase
+  .from('random_answers')
+  .select('*')
+  .like('answer_word', lastWord + '%')
+  .not('answer_word', 'in', `(${alreadyAnswer})`)
+  .limit(1);
 
   console.log('data=[%s] error=[%s]', JSON.stringify(data), JSON.stringify(error));
     

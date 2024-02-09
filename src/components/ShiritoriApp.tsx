@@ -40,8 +40,7 @@ export const ShiritoriApp = () => {
       }
     }
 
-    const lastWord = currentAnswer.slice(-1);
-    if (lastWord === "ん") {
+    if (currentAnswer.slice(-1) === "ん") {
       alert("あなたの負けです。最後の文字が「ん」です。");
       return;
     }
@@ -59,9 +58,21 @@ export const ShiritoriApp = () => {
     //入力欄をクリア
     setCurrentAnswer("");
 
+    //回答済みリストから「入力した回答の最後の文字で始まる回答」を抽出
+    let alreadyAnswers: string[] = [];
+    let lastWord: string = getLastWord(currentAnswer);
+    for (const item of answers) {
+      if (item.word.slice(0, 1) === lastWord) {
+        alreadyAnswers.push(item.word);
+      }
+    }
+
     try {
       //APIを叩く
-      let request: GameRequest = { answer_word: currentAnswer };
+      let request: GameRequest = {
+        current_answer: currentAnswer,
+        already_answers: alreadyAnswers,
+      };
       const response = await fetch("/api/game/", {
         method: "PUT",
         headers: {
@@ -94,7 +105,7 @@ export const ShiritoriApp = () => {
       lastId += 1;
       const newAnswer: AnswerItem = {
         id: lastId,
-        word: data.next_answer_word,
+        word: data.next_answer,
         player: "CPU",
       };
       setAnswers([newAnswer, lastAnswer, ...answers]);
