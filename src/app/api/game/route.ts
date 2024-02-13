@@ -1,6 +1,11 @@
 import { getNextAnswer } from '@/utils/supabaseFunction';
 import { NextRequest, NextResponse } from 'next/server'
 
+/**
+ * 
+ * @param req 
+ * @returns 
+ */
 export const PUT = async(req: NextRequest) => {
   const requestBody: GameRequest = await req.json();
   let responseBody: GameResponse = {result: false, next_answer : ""};
