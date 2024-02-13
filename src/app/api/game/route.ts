@@ -2,9 +2,9 @@ import { getNextAnswer } from '@/utils/supabaseFunction';
 import { NextRequest, NextResponse } from 'next/server'
 
 /**
- * 
- * @param req 
- * @returns 
+ * PUTリクエストを処理する
+ * @param req リクエスト
+ * @returns レスポンス
  */
 export const PUT = async(req: NextRequest) => {
   const requestBody: GameRequest = await req.json();
