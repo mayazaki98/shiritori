@@ -8,6 +8,10 @@ type AnswerItem = {
   player: string;
 };
 
+/**
+ * しりとりアプリコンポーネント
+ * @returns コンポーネント
+ */
 export const ShiritoriApp = () => {
   const [currentAnswer, setCurrentAnswer] = useState<string>("");
   const [answers, setAnswers] = useState<AnswerItem[]>([]);
